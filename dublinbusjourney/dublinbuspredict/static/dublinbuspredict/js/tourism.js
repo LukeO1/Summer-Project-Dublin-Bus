@@ -1,6 +1,6 @@
 
 function tourismMap(){
-    console.log('here')
+    console.log('Tourism Map function')
     var points_of_interest = [
         [0, "<b><u>Attraction</u></b><br><br> <b>Name: </b>Trinity College Dublin<br><b>Type: </b>Point of Interest<br><b>Address: </b>College Green, Dublin 2<br><b>Routes:</b><br><br>" + '<b>Website: </b><a target="_blank" href="https://www.tcd.ie/visitors/book-of-kells/">Trinity College</a>', '53.34369', '-6.25919'],
         [1, "<b><u>Attraction</u></b><br><br> <b>Name: </b>National Gallery of Ireland<br><b>Type: </b>Museum & Gallery<br><b>Address: </b>Merrion Square West, Dublin 2<br><b>Routes:</b><br><br>" + '<b>Website: </b><a target="_blank" href="https://www.nationalgallery.ie/">National Gallery of Ireland</a>', '53.3409059', '-6.252502499999991'],
@@ -25,7 +25,7 @@ function tourismMap(){
         [19, "<b><u>Venue</u></b><br><br> <b>Name: </b>The Olympia Theatre<br><b>Address: </b>72 Dame St, Temple Bar, Dublin 2<br><b>Routes:</b><br><br>" + '<b>Website: </b><a target="_blank" href="http://www.olympia.ie/whats-on/">The Olympia Theatre</a>', '53.344313', '-6.266080'],
         [20, "<b><u>Venue</u></b><br><br> <b>Name: </b>Aviva Stadium<br><b>Address: </b>Lansdowne Rd, Dublin 4<br><b>Routes:</b><br><br>" + '<b>Website: </b><a target="_blank" href="http://www.avivastadium.ie/">Aviva Stadium</a>', '53.335232', '-6.228457'],
         [21, "<b><u>Venue</u></b><br><br> <b>Name: </b>RDS Arena<br><b>Address: </b>Anglesea, Dublin 4<br><b>Routes:</b><br><br>" + '<b>Website: </b><a target="_blank" href="https://www.rds.ie/Whats-On">The RDS Arena</a>', '53.325718', '-6.229688'],
-        [22, "<b><u>Venue</u></b><br><br> <b>Name: </b>Phoenix Park,<br><b>Address: </b>Phoenix Park, Dublin 8<br><b>Routes:</b><br><br>" + '<b>Website: </b><a target="_blank" href="http://www.phoenixpark.ie/newsevents/">Phoenix Park</a>', '53.355882', '-6.329813'],
+        [22, "<b><u>Venue</u></b><br><br> <b>Name: </b>Phoenix Park<br><b>Address: </b>Phoenix Park, Dublin 8<br><b>Routes:</b><br><br>" + '<b>Website: </b><a target="_blank" href="http://www.phoenixpark.ie/newsevents/">Phoenix Park</a>', '53.355882', '-6.329813'],
         [23, "<b><u>Venue</u></b><br><br> <b>Name: </b>Irish Museum of Modern Art (IMMA)<br><b>Address: </b>Royal Hospital Kilmainham, Military Rd, Dublin 8<br><b>Routes:</b><br><br>" + '<b>Website: </b><a target="_blank" href="http://www.rhk.ie/rhk-events.html">Royal Hospital Kilmainham (IMMA)</a>', '53.343605', '-6.304168'],
         [24, "<b><u>Venue</u></b><br><br> <b>Name: </b>The Convention Centre<br><b>Address: </b>Spencer Dock, N Wall Quay, North Dock, Dublin 1<br><b>Routes:</b><br><br>" + '<b>Website: </b><a target="_blank" href="http://www.theccd.ie/whats-on">The Convention Centre</a>', '53.348052', '-6.239398'],
         [25, "<b><u>Venue</u></b><br><br> <b>Name: </b>Iveagh Gardens<br><b>Address: </b>Clonmel St, Saint Kevin's, Dublin 2<br><b>Routes:</b><br><br>" + '<b>Website: </b><a target="_blank" href="http://iveaghgardens.ie/events/">Iveagh Gardens</a>', '53.335138', '-6.261034'],
@@ -34,7 +34,7 @@ function tourismMap(){
 
     ];
 
-
+	// Declaring the map, info-windows, markers, and iterators
     var map = new google.maps.Map(document.getElementById('map_tourism'), {
         zoom: 14,
         center: new google.maps.LatLng(53.3444281399357, -6.259417531374538),
@@ -43,7 +43,8 @@ function tourismMap(){
 
     var infowindow = new google.maps.InfoWindow();
     var marker, i;
-
+	
+	// Looping through the first 8 by coordinates to place Museum marker
     for (i = 0; i < 8; i++) {
         marker = new Marker({
             position: new google.maps.LatLng(points_of_interest[i][2], points_of_interest[i][3]),
@@ -67,7 +68,8 @@ function tourismMap(){
         })(marker, i));
 
     }
-
+	
+	// Looping through the next 2 by coordinates to place Drinks marker
 	for (i = 8; i < 10; i++) {
         marker = new Marker({
             position: new google.maps.LatLng(points_of_interest[i][2], points_of_interest[i][3]),
@@ -92,6 +94,7 @@ function tourismMap(){
 
     }
     
+    // Looping through the next 2 by coordinates to place Sights marker
     for (i = 10; i < 12; i++) {
         marker = new Marker({
             position: new google.maps.LatLng(points_of_interest[i][2], points_of_interest[i][3]),
@@ -116,6 +119,7 @@ function tourismMap(){
 
     }
     
+    // Looping through the next element by coordinates to place Shopping marker
     for (i = 12; i < 13; i++) {
         marker = new Marker({
             position: new google.maps.LatLng(points_of_interest[i][2], points_of_interest[i][3]),
@@ -140,6 +144,7 @@ function tourismMap(){
 
     }
     
+    // Looping through the next 2 by coordinates to place Outdoors marker
     for (i = 13; i < 15; i++) {
         marker = new Marker({
             position: new google.maps.LatLng(points_of_interest[i][2], points_of_interest[i][3]),
@@ -164,6 +169,7 @@ function tourismMap(){
 
     }
 	
+	// Looping through final 13 by coordinates to place Venue marker
     for (i = 15; i < points_of_interest.length; i++) {
         marker = new Marker({
             position: new google.maps.LatLng(points_of_interest[i][2], points_of_interest[i][3]),
@@ -187,10 +193,10 @@ function tourismMap(){
         })(marker, i));
 
     }
-
-    infoWindow = new google.maps.InfoWindow;
     
 	// Adapted from: https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
+    infoWindow = new google.maps.InfoWindow;
+    
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -199,14 +205,14 @@ function tourismMap(){
                 lng: position.coords.longitude
             };
             marker = new Marker({
-            position: pos,
-            map: map,
-            icon: {
-				path: MAP_PIN,
-				fillColor: '#3594D4',
-				fillOpacity: 1,
-				strokeColor: '',
-				strokeWeight: 0
+            	position: pos,
+            	map: map,
+            	icon: {
+					path: MAP_PIN,
+					fillColor: '#3594D4',
+					fillOpacity: 1,
+					strokeColor: '',
+					strokeWeight: 0
 			},
 			map_icon_label: '<i class="fa fa-male fa-2x" style="margin-bottom:17px; color:white; margin-left:1px;"></i>'
         });  
@@ -233,3 +239,50 @@ function tourismMap(){
         infoWindow.open(map);
     }
 }
+
+// Toggle function for Tourist Table on tourism.html
+$(document).ready(function(){
+	$("#TourismButton").click(function(){
+		$("#toggleTourismTable").toggle();
+	});
+});
+
+// Toggle function for Venues Table on tourism.html
+$(document).ready(function(){
+	$("#VenuesButton").click(function(){
+		$("#toggleVenuesTable").toggle();
+	});
+});
+
+// Stephen: Testing functions for linking information tables to map with on-click functionality
+//var test = document.getElementById('test');
+//test.onclick = function(){
+//	for (i = 0; i < points_of_interest.length; i++){
+//		var lat = points_of_interest[i][2];
+//		var long = points_of_interest[i][3];
+//		var mapOptions = {
+//			center: new.google.maps.LatLng(lat,long),
+//			zoom: 17
+//		};
+//		var map = new google.maps.Map(document.getElementById("map_tourism"), mapOptions);
+//			}
+//		});
+//	}
+//}
+
+//$(document).ready(function() {
+//    $(document).on("click", ".button", function(e) {
+//        var latLng = $(this).attr("data-latLng");			
+//        findLocation(latLng);
+//    });
+//    
+//    function findLocation(latLng) {
+//    	tourismMap()
+//        latLng = latLng.split(",")
+//        var mapOptions = {
+//            center: new google.maps.LatLng(latLng[0],latLng[1]),
+//            zoom: 17
+//        };
+//        var map = new google.maps.Map(document.getElementById("map_tourism"), mapOptions);
+//    }
+//});
