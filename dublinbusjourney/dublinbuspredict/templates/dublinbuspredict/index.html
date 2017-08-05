@@ -21,16 +21,16 @@
         <link rel="stylesheet" type="text/css" href="{% static 'dublinbuspredict/css/style.css' %}" />
         <script type="text/javascript" src="{% static 'dublinbuspredict/js/jsIndex.js' %}"></script>
         <script type="text/javascript" src="{% static 'dublinbuspredict/js/main.js' %}"></script>
-                <style type="text/css">@font-face { 
-    				font-family: 'London-Tube'; 
-    				src:local('fontName Regular'),
-        			local('London-Tube'), 
-        			url({% static 'dublinbuspredict/fonts/London-Tube.ttf' %}) format('truetype');
-    				} 
-		</style>
+            <style type="text/css">@font-face {
+                font-family: 'London-Tube';
+                src:local('fontName Regular'),
+                local('London-Tube'),
+                url({% static 'dublinbuspredict/fonts/London-Tube.ttf' %}) format('truetype');
+                }
+            </style>
     </head>
 
-    <body>
+    <body onload="loadOrigin()">
         <!-- Main container to give website 12-grid shape -->
         {% load staticfiles %}
         <div class="container-fluid">
@@ -146,12 +146,9 @@
                                 </div>
 
                                 <div class="form-group dropdown">
-                                    <input  class="form-control" id="search-box-2" oninput="searchFunctionSRC()" type="text" name="search2" placeholder="Select a stop">
+                                    <input  class="form-control" id="search-box-2" onkeyup="newSearch()" type="text" name="search2" placeholder="Select a stop">
                                     <div class="dropdown-content">
                                         <ul class="dropdown-list" id="dropdown-list-2">
-                                        {% for stop in list_stops %}
-                                            <li style="cursor:pointer"><a onclick='getStopsStartingFromSource("{{ stop }}")'>{{ stop }}</a></li>
-                                        {% endfor %}
                                         </ul>
 
                                     </div>
@@ -173,7 +170,6 @@
                                     </div>
                                     <div class="form-group"><button type="button" id="submit-route" onclick="window.location='http://127.0.0.1:8000/dublinbuspredict/map';" class="form-control btn btn-primary">Find Journey</button></div>
                                     <div class="form-group"><button type="button" id="reset-1" onclick="loadRoutes()" class="form-control btn btn-primary">Reset</button></div>
-                                    <script>                                    
                                     <!--<button type="button" onclick="window.location='http://127.0.0.1:8000/dublinbuspredict/map';" class="form-control btn btn-primary"><img class="geolocation_button" src="{% static 'dublinbuspredict/css/images/geolocation.png' %}"width="25" height="25"></button>-->
                                     <script>
                                         document.getElementById("submit-route").addEventListener("click", function(){
@@ -184,7 +180,6 @@
                                             time = document.getElementById("time-input-index").value;
                                             $.getJSON("http://127.0.0.1:8000/dublinbuspredict/setInfoNextPage", {"route":route, "source":source, "destination":destination, "time":time, "date":date}, function(d) {});
                                         });
-                                                                                
                                     </script>
                                 </div>
                             </form>

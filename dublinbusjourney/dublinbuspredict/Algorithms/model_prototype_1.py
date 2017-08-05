@@ -61,7 +61,7 @@ def model(bus_route, stopid, arrival_time, day, p_holiday, s_holiday):
                                'public_holiday': [p_holiday]})
 
     # 4 load in the model.
-    with open("C:\\Users\\steph\\OneDrive\\Documents\\trained_modelv7.pkl", "rb") as f:
+    with open("C:\\Users\\lucas\\Desktop\\trained_modelv7.pkl", "rb") as f:
         rtr = joblib.load(f)
 
     # 5 predict the delay based on the input.

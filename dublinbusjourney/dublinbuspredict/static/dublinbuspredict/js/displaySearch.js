@@ -37,6 +37,7 @@ var directionsDisplay;
 var service;
 var source;
 var destination;
+var list_origin_dropdown = [];
 
 function initMap() {
     console.log('inside map!')
@@ -184,7 +185,8 @@ function loadRoutes(){
             $('#dropdown-list-4').append($('<li></li>').val(p).html('<a onclick=getStops2("' + p + '")>' + p + '</a>'));
         })
         $.each(d['list_stops'], function(i, p) {
-            $('#dropdown-list-5').append($('<li></li>').val(p).html('<a onclick=getStopsStartingFromSource2("' + p + '")>' + p + '</a>'));
+//            $('#dropdown-list-5').append($('<li></li>').val(p).html('<a onclick=getStopsStartingFromSource2("' + p + '")>' + p + '</a>'));
+            list_origin_dropdown.push(p);
         })
     });
     var b = $.getJSON("http://127.0.0.1:8000/dublinbuspredict/getInfoNextPage", null, function(d) {
@@ -298,6 +300,7 @@ function getStops2(route) {
         document.getElementById("dropdown-list-5").innerHTML = "";
         document.getElementById("search-box-5").value = "";
         document.getElementById("search-box-6").value = "";
+        document.getElementById( "search-box-5").setAttribute( "onkeyup", "javascript: searchFunctionSRC()" );
     $.each(d['stops'], function(i, p) {
         $('#dropdown-list-5').append($('<li></li>').val(p).html('<a onclick=getStopsDest2(' + p + ')>' + route + ' - ' + p + '</a>'));
     });
@@ -397,12 +400,48 @@ function loadRoutes2(){
     document.getElementById("search-box-5").value = "";
     document.getElementById("dropdown-list-6").innerHTML = "";
     document.getElementById("search-box-6").value = "";
+    document.getElementById( "search-box-5").setAttribute( "onkeyup", "javascript: newSearch2()" );
     var a = $.getJSON("http://127.0.0.1:8000/dublinbuspredict/loadRoutesForMap", null, function(d) {
         $.each(d['list_routes'], function(i, p) {
             $('#dropdown-list-4').append($('<li></li>').val(p).html('<a onclick=getStops2("' + p + '")>' + p + '</a>'));
         })
-        $.each(d['list_stops'], function(i, p) {
-            $('#dropdown-list-5').append($('<li></li>').val(p).html('<a onclick=getStopsStartingFromSource2("' + p + '")>' + p + '</a>'));
-        })
+//        $.each(d['list_stops'], function(i, p) {
+//            $('#dropdown-list-5').append($('<li></li>').val(p).html('<a onclick=getStopsStartingFromSource2("' + p + '")>' + p + '</a>'));
+//        })
     });
+}
+
+function loadOrigin2(){
+    console.log('hereee!')
+    $.getJSON("http://127.0.0.1:8000/dublinbuspredict/loadRoutesForMap", null, function(d) {
+             $.each(d['list_stops'], function(i, p) {
+                list_origin_dropdown.push(p);
+             });
+    });
+}
+
+function newSearch2(){
+    stop = document.getElementById('search-box-5').value;
+    console.log(stop);
+    var node;
+    var textnode;
+    text = '';
+    document.getElementById("dropdown-list-5").innerHTML = "";
+    var i;
+    for(i = 0; i < list_origin_dropdown.length; i++){
+        if (list_origin_dropdown[i].toString().indexOf(stop.toString()) != -1){
+            if (stop.length > 0){
+                var same = true;
+                for (var j = 0; j < stop.length; j++){
+                    if (stop[j] != list_origin_dropdown[i].toString()[j]){
+                        same = false
+                    }
+                }
+                if (same == true){
+                    text += '<li><a onclick="getStopsStartingFromSource2('+ list_origin_dropdown[i] +')">' + list_origin_dropdown[i] + '</a></li>'
+                }
+            }
+        }
+    }
+    document.getElementById("dropdown-list-5").innerHTML = text;
 }
