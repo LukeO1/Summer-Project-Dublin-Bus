@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
 
-        <title>Home - BusLightyear</title>
+        <title>Tourism - BusLightyear</title>
 
         <!-- If IE use the latest rendering engine -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,6 +22,9 @@
         
         <!-- Needed for Icon Background and Shape for Tourism.html -->
         <script src="http://map-icons.com/dist/js/map-icons.js"></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
         
         {% load staticfiles %}
         <link rel="stylesheet" type="text/css" href="{% static 'dublinbuspredict/css/style.css' %}" />
@@ -81,6 +84,152 @@
             </div>
             <h3>Dublin <small>Points of Interest</small></h3>
         </div>
+        
+        <div class="container">
+			<button type="button" class="btn btn-lg" id="TourismButton" style="background-color:#3594D4; color:white;">Points of Interest</button>
+			<button type="button" class="btn btn-lg" id="VenuesButton" style="background-color:#3594D4; color:white;">Venues</button>
+		</div>
+		
+        <div class="container">
+            <div class="row col-lg-6" id="toggleTourismTable">
+                <table class="table table-striped">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>#</th>
+                            <th>Points of Interest</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>Trinity College Dublin<a href="#" class="button" id="test" data-latLng="53.2733,-6.2689"> Location</a></td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>National Gallery of Ireland</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>The Little Museum of Dublin</td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>The G.P.O</td>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <td>Collins Barracks</td>
+                        </tr>
+                        <tr>
+                            <th>6</th>
+                            <td>Dublin Castle</td>
+                        </tr>
+                        <tr>
+                            <th>7</th>
+                            <td>Irish Museum of Modern Art (IMMA)</td>
+                        </tr>
+                        <tr>
+                            <th>8</th>
+                            <td>St. Patrick's Cathedral</td>
+                        </tr>
+                        <tr>
+                            <th>9</th>
+                            <td>Guinness Storehouse</td>
+                        </tr>
+                        <tr>
+                            <th>10</th>
+                            <td>Old Jameson Distellery</td>
+                        </tr>
+                        <tr>
+                            <th>11</th>
+                            <td>Dublin Zoo</td>
+                        </tr>
+                        <tr>
+                            <th>12</th>
+                            <td>Farmleigh House</td>
+                        </tr>
+                        <tr>
+                            <th>13</th>
+                            <td>Grafton Street</td>
+                        </tr>
+                        <tr>
+                            <th>14</th>
+                            <td>St. Stephen's Green</td>
+                        </tr>
+                        <tr>
+                            <th>15</th>
+                            <td>National Botanic Gardens</td>
+                        </tr>            
+                    </tbody>
+                </table>
+            </div>
+            <div class="row col-lg-6" id="toggleVenuesTable">
+                <table class="table table-striped">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>#</th>
+                            <th>Venues</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td>The Point</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>Croke Park</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>The National Concert Hall</td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>Vicar Street</td>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <td>The Olympia Theatre</td>
+                        </tr>
+                        <tr>
+                            <th>6</th>
+                            <td>Aviva Stadium</td>
+                        </tr>
+                        <tr>
+                            <th>7</th>
+                            <td>RDS Arena</td>
+                        </tr>
+                        <tr>
+                            <th>8</th>
+                            <td>Phoenix Park</td>
+                        </tr>
+                        <tr>
+                            <th>9</th>
+                            <td>Irish Museum of Modern Art (IMMA)</td>
+                        </tr>
+                        <tr>
+                            <th>10</th>
+                            <td>The Convention Centre</td>
+                        </tr>
+                        <tr>
+                            <th>11</th>
+                            <td>Iveagh Gardens</td>
+                        </tr>
+                        <tr>
+                            <th>12</th>
+                            <td>Bord Gais Energy Theatre</td>
+                        </tr>
+                        <tr>
+                            <th>13</th>
+                            <td>Marlay Park</td>
+                        </tr>            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="map-canvas" style="height: 200px;"></div>
 
         <div class="container-fluid">
 			<div class="row">
