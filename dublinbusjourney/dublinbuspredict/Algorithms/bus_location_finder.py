@@ -304,6 +304,7 @@ def info_for_model(stop_list, stops, route):
 
         # Populate our lists
         for i in stops[len(stops) - 1]:
+            print('Bus 1:', bus_1, 'I:', i)
             # Get the times for the buses at the given stop
             first_3_buses = get_due_time(str(i), route)
             while first_3_buses == []:
@@ -338,9 +339,11 @@ def info_for_model(stop_list, stops, route):
                 print(first_3_buses)
                 if i == bus_1:
                     bus_number -= 1
+                    print('BUs 1:', stops_bus_1)
                     stops_bus_3.append({'stopid':i, 'delay':first_3_buses[2]['delay'], 'arrival_hour':first_3_buses[2]['arrivaldatetime'][11:13], 'datetime':first_3_buses[2]['arrivaldatetime'], 'previous_stop':previous_stop})
                     stops_bus_2.append({'stopid':i, 'delay':first_3_buses[1]['delay'], 'arrival_hour':first_3_buses[1]['arrivaldatetime'][11:13], 'datetime':first_3_buses[1]['arrivaldatetime'], 'previous_stop':previous_stop})
                     stops_bus_1.append({'stopid':i, 'delay':first_3_buses[0]['delay'], 'arrival_hour':first_3_buses[0]['arrivaldatetime'][11:13], 'datetime':first_3_buses[0]['arrivaldatetime'], 'previous_stop':previous_stop})
+                    print('BUs 1:', stops_bus_1)
                 else:
                     stops_bus_3.append({'stopid':i, 'delay':first_3_buses[1]['delay'], 'arrival_hour':first_3_buses[1]['arrivaldatetime'][11:13], 'datetime':first_3_buses[1]['arrivaldatetime'], 'previous_stop':previous_stop})
                     stops_bus_2.append({'stopid':i, 'delay':first_3_buses[0]['delay'], 'arrival_hour':first_3_buses[0]['arrivaldatetime'][11:13], 'datetime':first_3_buses[0]['arrivaldatetime'], 'previous_stop':previous_stop})
@@ -350,6 +353,12 @@ def info_for_model(stop_list, stops, route):
                 stops_bus_3.append({'stopid':i, 'delay':first_3_buses[2]['delay'], 'arrival_hour':first_3_buses[2]['arrivaldatetime'][11:13], 'datetime':first_3_buses[2]['arrivaldatetime'], 'previous_stop':previous_stop})
                 stops_bus_2.append({'stopid':i, 'delay':first_3_buses[1]['delay'], 'arrival_hour':first_3_buses[1]['arrivaldatetime'][11:13], 'datetime':first_3_buses[1]['arrivaldatetime'], 'previous_stop':previous_stop})
                 stops_bus_1.append({'stopid':i, 'delay':first_3_buses[0]['delay'], 'arrival_hour':first_3_buses[0]['arrivaldatetime'][11:13], 'datetime':first_3_buses[0]['arrivaldatetime'], 'previous_stop':previous_stop})
+                print('BUs 1:', stops_bus_1)
+            print('<---------------------------------------------------------------->')
+            print(stops_bus_1)
+            print(stops_bus_2)
+            print(stops_bus_3)
+            print('<---------------------------------------------------------------->')
         joined = [stops_bus_1, stops_bus_2, stops_bus_3]
     elif len(stops) == 2:
         # Set bus_number to 2, we will start filling the buses from the end, the last bus first

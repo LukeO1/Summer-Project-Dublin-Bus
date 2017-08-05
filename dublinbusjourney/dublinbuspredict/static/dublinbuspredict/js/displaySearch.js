@@ -207,8 +207,11 @@ function loadRoutes(){
             $.getJSON("http://127.0.0.1:8000/dublinbuspredict/runModel", {"route":route, "source":source, "destination":destination}, function(d) {
                 console.log('here', d)
                 var d2 = d.info_buses;
+                console.log('This ran:', d2)
                 var bus1 = d2[1];
+                console.log(bus1)
                 var bus2 = d2[2];
+                console.log(bus2)
                 console.log("Due time",bus1[0].predicted_arrival_time)
                 var first_arrival = new Date(bus1[0].predicted_arrival_time);
                 var second_arrival = new Date(bus2[0].predicted_arrival_time);

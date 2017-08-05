@@ -33,7 +33,7 @@ def model(bus_route, stopid, arrival_time, day, p_holiday, s_holiday):
     cursor = db.cursor()
     cursor.execute('SELECT DISTINCT trip_id FROM bus_timetable WHERE bus_timetable.route_id = "' + str(bus_route) + '" AND bus_timetable.stop_id = "' + str(stopid) + '" AND bus_timetable.arrival_time >= "' + str(arrival_time)[11:] + '" ORDER BY bus_timetable.arrival_time ASC LIMIT 1;')
     rows2 = cursor.fetchall()
-    cursor.execute('SELECT bus_timetable.arrival_time, bus_timetable.stop_sequence, bus_timetable.stop_id, bus_stops.long_name, bus_stops.name, bus_stops.normed_lat, bus_stops.normed_lon, bus_timetable.distance, bus_timetable.accum_dist FROM bus_timetable, bus_stops WHERE bus_timetable.trip_id = "' + str(rows2[0][0]) + '" AND bus_timetable.stop_id = bus_stops.stop_id AND bus_stops.stop_id = "' + str(stopid) + '" ORDER BY bus_timetable.stop_sequence;')
+    cursor.execute('SELECT bus_timetable.arrival_time, bus_timetable.stop_sequence, bus_timetable.stop_id, bus_stops.long_name, bus_stops.name, bus_stops.normed_lat, bus_stops.normed_lon, bus_timetable.dist_nxt_stop, bus_timetable.accum_dist FROM bus_timetable, bus_stops WHERE bus_timetable.trip_id = "' + str(rows2[0][0]) + '" AND bus_timetable.stop_id = bus_stops.stop_id AND bus_stops.stop_id = "' + str(stopid) + '" ORDER BY bus_timetable.stop_sequence;')
     rows3 = cursor.fetchall()
     normed_lat = rows[0][0]
     normed_lon = rows[0][1]
@@ -61,7 +61,7 @@ def model(bus_route, stopid, arrival_time, day, p_holiday, s_holiday):
                                'public_holiday': [p_holiday]})
 
     # 4 load in the model.
-    with open("C:\\Users\\lucas\\Desktop\\trained_modelv7.pkl", "rb") as f:
+    with open("C:\\Users\\lucas\\Desktop\\trained_modelv8.pkl", "rb") as f:
         rtr = joblib.load(f)
 
     # 5 predict the delay based on the input.
