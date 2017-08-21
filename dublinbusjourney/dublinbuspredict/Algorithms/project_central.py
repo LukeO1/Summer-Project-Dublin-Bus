@@ -70,7 +70,7 @@ def get_trip_id(bus_route, stop_id, arrival_time, day):
 def main(bus_route, source_stop, destination_stop, direction, position):
     info = central(bus_route, source_stop, destination_stop, direction, position)
     trip_id = get_trip_id(bus_route, source_stop, info[len(info)-1][0]['arrival'], datetime.weekday(parser.parse(info[len(info)-1][0]['arrival'])))
-    with open("C:\\Users\\lucas\\Desktop\\trained_modelv9.pkl", "rb") as f:
+    with open("C:\\Users\\minogud2\\BusLightyear\\cleaning\\trained_modelv10.pkl", "rb") as f:
         rtr = joblib.load(f)
     if type(info) == str:
         return info

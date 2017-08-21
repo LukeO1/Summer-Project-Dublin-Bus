@@ -137,7 +137,7 @@ def time_to_arrive(datetime, sec):
     return new_time
 
 def time_date(bus_route, source_stop, destination_stop, date, time, direction, stops, trip_id):
-    with open("C:\\Users\\lucas\\Desktop\\trained_modelv9.pkl", "rb") as f:
+    with open("C:\\Users\\minogud2\\BusLightyear\\cleaning\\trained_modelv10.pkl", "rb") as f:
         rtr = joblib.load(f)
     holiday = holidays(date)
     p_holiday = holiday[0]
