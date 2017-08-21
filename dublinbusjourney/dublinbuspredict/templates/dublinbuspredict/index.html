@@ -177,7 +177,7 @@
                                 <div class="form-group">
                                     <input class="form-control" type="text" id="time-input-index" onfocus="(this.type='time')" onblur="(this.type='text')" placeholder="Now">
                                 </div>
-                                <div class="form-group"><button type="button" id="submit-route" onclick="window.location='http://127.0.0.1:8000/dublinbuspredict/map';" class="form-control btn btn-primary" disabled>Find Journey</button></div>
+                                <div class="form-group"><button type="button" id="submit-route" onclick="window.location='https://137.43.49.41:8001/dublinbuspredict/map';" class="form-control btn btn-primary" disabled>Find Journey</button></div>
                                 <div class="form-group"><button type="button" id="reset-1" onclick="loadRoutes()" class="form-control btn btn-primary"><i class="fa fa-refresh" aria-hidden="true"></i></button></div>
   
                                 <script>
@@ -187,7 +187,7 @@
                                         destination = document.getElementById("search-box-3").value;
                                         date = document.getElementById("date-input-index").value;
                                         time = document.getElementById("time-input-index").value;
-                                        $.getJSON("http://127.0.0.1:8000/dublinbuspredict/setInfoNextPage", {"route":route, "source":source, "destination":destination, "time":time, "date":date}, function(d) {});
+                                        $.getJSON("https://137.43.49.41:8001/dublinbuspredict/setInfoNextPage", {"route":route, "source":source, "destination":destination, "time":time, "date":date}, function(d) {});
                                     });
                                     
                                   
@@ -259,8 +259,8 @@
                     </div>
                     <div class="col-sm-3 text-center"><h4>Transport Links</h4>
                         <li><a target="_blank" href="https://www.luas.ie/">Luas</a></li>
-                        <li><a target="_blank" href="http://www.buseireann.ie/">Bus Eireann</a></li>
-                        <li><a target="_blank" href="http://www.irishrail.ie/">Irish Rail</a></li>
+                        <li><a target="_blank" href="https://www.buseireann.ie/">Bus Eireann</a></li>
+                        <li><a target="_blank" href="https://www.irishrail.ie/">Irish Rail</a></li>
                     </div>
                     <div class="col-sm-3 text-center hidden-xs"><img id="bly_img" src="{% static 'dublinbuspredict/css/images/logonobg.png' %}">
                     </div>

@@ -18,7 +18,7 @@ function getStops(route) {
     document.getElementById("search-box-1").value = route;
     document.getElementById('search-box-2').onkeyup = function(e){searchFunctionSRC()};
     document.getElementById('spinner2').style.display = 'block';
-    $.getJSON("http://127.0.0.1:8000/dublinbuspredict/pilotRoutes", {"route":route}, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/pilotRoutes", {"route":route}, function(d) {
         document.getElementById("dropdown-list-2").innerHTML = "";
         document.getElementById("search-box-2").value = "";
         document.getElementById("search-box-3").value = "";
@@ -49,7 +49,7 @@ function getStopsDest(source) {
     document.getElementById("search-box-2").value = source;
     route = document.getElementById("search-box-1").value;
     document.getElementById('spinner3').style.display = 'block';
-    $.getJSON("http://127.0.0.1:8000/dublinbuspredict/pilotDest", {"route":route, "source":source}, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/pilotDest", {"route":route, "source":source}, function(d) {
         document.getElementById("dropdown-list-3").innerHTML = "";
         document.getElementById("search-box-3").value = "";
         $.each(d['stops'], function(i, p) {
@@ -95,7 +95,7 @@ function getStopsStartingFromSource(stop){
     document.getElementById("dropdown-list-3").innerHTML = "";
     document.getElementById("search-box-3").value = "";
     document.getElementById('spinner3').style.display = 'block';
-    $.getJSON("http://127.0.0.1:8000/dublinbuspredict/getStopsStartingFromSource", {"source":stop}, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/getStopsStartingFromSource", {"source":stop}, function(d) {
         $.each(d['stops'], function(i, p) {
             $('#dropdown-list-3').append($('<li></li>').val(p).html('<a onclick=getStopsDestExtraRoute(' + p + ')>'+ p + '</a>'));
         });
@@ -110,7 +110,7 @@ function getStopsDestExtraRoute(route){
     source = document.getElementById("search-box-2").value;
     dest = document.getElementById("search-box-3").value;
     document.getElementById('spinner1').style.display = 'block';
-    $.getJSON("http://127.0.0.1:8000/dublinbuspredict/getStopsDestExtraRoute", {"source":source, "dest":dest}, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/getStopsDestExtraRoute", {"source":source, "dest":dest}, function(d) {
         $.each(d['routes'], function(i, p) {
             $('#dropdown-list-1').append($('<li></li>').val(p[0]).html('<a onclick=getExtraRoute("' + p[0] + '")>'+ p[0] + '&emsp;&emsp;' + p[1] + 'Km</a>'));
         });
@@ -128,7 +128,7 @@ function getExtraRoute(route){
 		document.getElementById("submit-route").disabled = false;
 	}
 
-    $.getJSON("http://127.0.0.1:8000/dublinbuspredict/setStopsForMaps", {"route":route, "source":sourceInput, "dest":destInput}, function() {});
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/setStopsForMaps", {"route":route, "source":sourceInput, "dest":destInput}, function() {});
 }
 
 function loadRoutes(){
@@ -140,7 +140,7 @@ function loadRoutes(){
     document.getElementById("dropdown-list-3").innerHTML = "";
     document.getElementById("search-box-3").value = "";
     document.getElementById('search-box-2').onkeyup = function(e){newSearch()};
-    var a = $.getJSON("http://127.0.0.1:8000/dublinbuspredict/loadRoutesForMap", null, function(d) {
+    var a = $.getJSON("https://137.43.49.41:8001/dublinbuspredict/loadRoutesForMap", null, function(d) {
         $.each(d['list_routes'], function(i, p) {
             $('#dropdown-list-1').append($('<li></li>').val(p).html('<a onclick=getStops("' + p + '")>' + p + '</a>'));
         })
@@ -149,7 +149,7 @@ function loadRoutes(){
 
 var list_origin_dropdown = [];
 function loadOrigin(){
-    $.getJSON("http://127.0.0.1:8000/dublinbuspredict/loadRoutesForMap", null, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/loadRoutesForMap", null, function(d) {
          $.each(d['list_stops'], function(i, p) {
             list_origin_dropdown.push(p);
          });
