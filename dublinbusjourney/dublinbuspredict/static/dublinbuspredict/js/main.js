@@ -30,7 +30,7 @@ function googleTranslateElementInit() {
 // function for loading in twitter data from python script for AA roadwatch. 
 // The last 9 tweets displayed from the account.
 function loadTwitter(){
-	   var text = $.getJSON("https://137.43.49.41:8001/dublinbuspredict/getTwitterText", null, function(d) {
+	   var text = $.getJSON("http://137.43.49.41:8001/dublinbuspredict/getTwitterText", null, function(d) {
 	   for (i = 0; i < 10; i++){
 	       var twitterText = d['text'][i];
 	       if (typeof twitterText !== 'undefined'){

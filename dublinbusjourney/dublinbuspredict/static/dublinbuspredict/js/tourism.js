@@ -16,7 +16,7 @@ $(document).ready(function(){
 // Google map tourism function
 
 function tourismMap(){
-    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/getTourist", null, function(d) {
+    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/getTourist", null, function(d) {
     	var points_of_interest = d.data;
     	// Declaring the map, info-windows, markers, and iterators
         map = new google.maps.Map(document.getElementById("map_tourism"), {
@@ -122,7 +122,7 @@ function tourismMap(){
 
 // function to get tourism data from mysql database
 function getStopData(){
-$.getJSON("https://137.43.49.41:8001/dublinbuspredict/getTouristRoutes", null, function(d2) {
+$.getJSON("http://137.43.49.41:8001/dublinbuspredict/getTouristRoutes", null, function(d2) {
 	routesData = d2.data;
 });
 }
