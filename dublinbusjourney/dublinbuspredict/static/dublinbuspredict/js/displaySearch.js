@@ -66,7 +66,7 @@ function initMap() {
 	  transitLayer.setMap(map);
 
 //	Function to pull in the json from the url.
-    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/sampleQuery", null, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/sampleQuery", null, function(d) {
         var data = d.data;
         var points = new Array; 
         // Loop to display marker
@@ -303,7 +303,7 @@ function getPredictedTimes(bus, stops){
 
 function loadRoutes(){
     var counter = 0
-    var a = $.getJSON("http://137.43.49.41:8001/dublinbuspredict/loadRoutesForMap", null, function(d) {
+    var a = $.getJSON("https://137.43.49.41:8001/dublinbuspredict/loadRoutesForMap", null, function(d) {
         $.each(d['list_routes'], function(i, p) {
             $('#dropdown-list-4').append($('<li></li>').val(p).html('<a onclick=getStops2("' + p + '")>' + p + '</a>'));
         })
@@ -312,7 +312,7 @@ function loadRoutes(){
             list_origin_dropdown.push(p);
         })
     });
-    var b = $.getJSON("http://137.43.49.41:8001/dublinbuspredict/getInfoNextPage", null, function(d) {
+    var b = $.getJSON("https://137.43.49.41:8001/dublinbuspredict/getInfoNextPage", null, function(d) {
         route = d['route'];
         source = d['source'];
         destination = d['destination'];
@@ -362,7 +362,7 @@ function getStops2(route) {
     document.getElementById("search-box-4").value = route;
     document.getElementById('spinner5').style.display = 'block';
     document.getElementById('search-box-5').onkeyup = function(e){searchFunctionSRC2()};
-    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/pilotRoutes", {"route":route}, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/pilotRoutes", {"route":route}, function(d) {
         document.getElementById("dropdown-list-5").innerHTML = "";
         document.getElementById("search-box-5").value = "";
         document.getElementById("search-box-6").value = "";
@@ -393,7 +393,7 @@ function getStopsDest2(source) {
     document.getElementById("search-box-5").value = source;
     route = document.getElementById("search-box-4").value;
     document.getElementById('spinner6').style.display = 'block';
-    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/pilotDest", {"route":route, "source":source}, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/pilotDest", {"route":route, "source":source}, function(d) {
         document.getElementById("dropdown-list-6").innerHTML = "";
         document.getElementById("search-box-6").value = "";
         $.each(d['stops'], function(i, p) {
@@ -439,7 +439,7 @@ function getStopsStartingFromSource2(stop){
     document.getElementById("dropdown-list-6").innerHTML = "";
     document.getElementById("search-box-6").value = "";
     document.getElementById('spinner6').style.display = 'block';
-    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/getStopsStartingFromSource", {"source":stop}, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/getStopsStartingFromSource", {"source":stop}, function(d) {
         $.each(d['stops'], function(i, p) {
             $('#dropdown-list-6').append($('<li></li>').val(p).html('<a onclick=getStopsDestExtraRoute2(' + p + ')>'+ p + '</a>'));
         });
@@ -454,7 +454,7 @@ function getStopsDestExtraRoute2(route){
     source = document.getElementById("search-box-5").value;
     dest = document.getElementById("search-box-6").value;
     document.getElementById('spinner4').style.display = 'block';
-    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/getStopsDestExtraRoute", {"source":source, "dest":dest}, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/getStopsDestExtraRoute", {"source":source, "dest":dest}, function(d) {
         $.each(d['routes'], function(i, p) {
             $('#dropdown-list-4').append($('<li></li>').val(p).html('<a onclick=getExtraRoute2("' + p + '")>'+ p + '</a>'));
         });
@@ -471,7 +471,7 @@ function getExtraRoute2(route){
 	if (routeInput !='' && sourceInput !='' && sourceInput !=''){
 		document.getElementById("submit-route2").disabled = false;
 	}
-	$.getJSON("http://137.43.49.41:8001/dublinbuspredict/setStopsForMaps", {"route":route, "source":sourceInput, "dest":destInput}, function() {});
+	$.getJSON("https://137.43.49.41:8001/dublinbuspredict/setStopsForMaps", {"route":route, "source":sourceInput, "dest":destInput}, function() {});
 }
 
 function loadRoutes2(){
@@ -482,7 +482,7 @@ function loadRoutes2(){
     document.getElementById("search-box-5").value = "";
     document.getElementById("dropdown-list-6").innerHTML = "";
     document.getElementById("search-box-6").value = "";
-    var a = $.getJSON("http://137.43.49.41:8001/dublinbuspredict/loadRoutesForMap", null, function(d) {
+    var a = $.getJSON("https://137.43.49.41:8001/dublinbuspredict/loadRoutesForMap", null, function(d) {
         $.each(d['list_routes'], function(i, p) {
             $('#dropdown-list-4').append($('<li></li>').val(p).html('<a onclick=getStops2("' + p + '")>' + p + '</a>'));
         })
@@ -492,7 +492,7 @@ function loadRoutes2(){
 
 function loadOrigin2(){
     document.getElementById('search-box-5').onkeyup = function(e){newSearch2()};
-    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/loadRoutesForMap", null, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/loadRoutesForMap", null, function(d) {
              $.each(d['list_stops'], function(i, p) {
                 list_origin_dropdown.push(p);
              });
@@ -530,7 +530,7 @@ function getPredictions(route, source, destination){
     busNum = 0
     var buses = 0
     var direction = 0
-    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/getNumberBuses", {"route":route, "source":source}, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/getNumberBuses", {"route":route, "source":source}, function(d) {
         buses = d['buses']
         direction = d['direction']
         if (buses == 1){
@@ -546,19 +546,19 @@ function getPredictions(route, source, destination){
             document.getElementById('spinner-result-2').style.display = 'block';
         }
         if (buses != 'No buses found!'){
-            $.getJSON("http://137.43.49.41:8001/dublinbuspredict/runModel", {"route":route, "source":source, "destination":destination, "direction":direction, "position":0}, function(d) {
+            $.getJSON("https://137.43.49.41:8001/dublinbuspredict/runModel", {"route":route, "source":source, "destination":destination, "direction":direction, "position":0}, function(d) {
                 var d2 = d.info_buses;
                 getPredictedTimes(d.info_buses[0], d.info_stops);
                 document.getElementById('spinner-result-0').style.display = 'none';
                 var bus0, bus1, bus2;
                 if (buses > 1){
-                    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/runModel", {"route":route, "source":source, "destination":destination, "direction":direction, "position":1}, function(d) {
+                    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/runModel", {"route":route, "source":source, "destination":destination, "direction":direction, "position":1}, function(d) {
                         var d2 = d.info_buses;
                         getPredictedTimes(d.info_buses[0], d.info_stops);
                         document.getElementById('spinner-result-1').style.display = 'none';
                         var bus0, bus1, bus2;
                         if (buses > 2){
-                            $.getJSON("http://137.43.49.41:8001/dublinbuspredict/runModel", {"route":route, "source":source, "destination":destination, "direction":direction, "position":2}, function(d) {
+                            $.getJSON("https://137.43.49.41:8001/dublinbuspredict/runModel", {"route":route, "source":source, "destination":destination, "direction":direction, "position":2}, function(d) {
                                 var d2 = d.info_buses;
                                 getPredictedTimes(d.info_buses[0], d.info_stops);
                                 document.getElementById('spinner-result-2').style.display = 'none';
@@ -576,7 +576,7 @@ function getPredictions(route, source, destination){
 
 function getPredictionSchedule(route, source, destination, date, time){
     var busNum = 0;
-    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/runQueries", {"route":route, "source":source, "destination":destination, "date":date, "time":time}, function(d) {
+    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/runQueries", {"route":route, "source":source, "destination":destination, "date":date, "time":time}, function(d) {
         var bus1 = [d.list_stops[0][0]]
         var bus2 = [d.list_stops[0][1]]
         var bus3 = [d.list_stops[0][2]]
@@ -587,7 +587,7 @@ function getPredictionSchedule(route, source, destination, date, time){
         document.getElementById('spinner-result-0').style.display = 'block';
         document.getElementById('spinner-result-1').style.display = 'block';
         document.getElementById('spinner-result-2').style.display = 'block';
-        $.getJSON("http://137.43.49.41:8001/dublinbuspredict/runPlanner", {"route":route, "source":source, "destination":destination, "date":date, "time":time, 'bus':bus1, 'stops': stops1}, function(d1) {
+        $.getJSON("https://137.43.49.41:8001/dublinbuspredict/runPlanner", {"route":route, "source":source, "destination":destination, "date":date, "time":time, 'bus':bus1, 'stops': stops1}, function(d1) {
             if (d1 === "No buses found1!"){
                 document.getElementById('fail').style.display = 'block';
             }
@@ -595,7 +595,7 @@ function getPredictionSchedule(route, source, destination, date, time){
                 displayPredictionSchedule(d1.info_buses, busNum, d1.stops)
                 busNum += 1;
                 document.getElementById('spinner-result-0').style.display = 'none';
-                $.getJSON("http://137.43.49.41:8001/dublinbuspredict/runPlanner", {"route":route, "source":source, "destination":destination, "date":date, "time":time, 'bus':bus2, 'stops': stops2}, function(d2) {
+                $.getJSON("https://137.43.49.41:8001/dublinbuspredict/runPlanner", {"route":route, "source":source, "destination":destination, "date":date, "time":time, 'bus':bus2, 'stops': stops2}, function(d2) {
                     if (d2 === "No buses found2!"){
                         document.getElementById('fail').style.display = 'block';
                     }
@@ -604,7 +604,7 @@ function getPredictionSchedule(route, source, destination, date, time){
                         busNum += 1;
                         document.getElementById('spinner-result-1').style.display = 'none';
                     }
-                    $.getJSON("http://137.43.49.41:8001/dublinbuspredict/runPlanner", {"route":route, "source":source, "destination":destination, "date":date, "time":time, 'bus':bus3, 'stops': stops3}, function(d3) {
+                    $.getJSON("https://137.43.49.41:8001/dublinbuspredict/runPlanner", {"route":route, "source":source, "destination":destination, "date":date, "time":time, 'bus':bus3, 'stops': stops3}, function(d3) {
                         if (d3 === "No buses found3!"){
                             document.getElementById('fail').style.display = 'block';
                         }
