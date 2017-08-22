@@ -1,3 +1,4 @@
+SECURE_SSL_REDIRECT = True
 """
 Django settings for dublinbusjourney project.
 
@@ -21,16 +22,16 @@ except:
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SERVER_TYPE = "DEV"
-SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True # currently only in Dev branch of Django.
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO','https')
+SECURE_SSL_REDIRECT = False
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = '#*1zk%*2qy40&=12^jbzkamzgi7s8l8)h29h1(4vx^5sc4%&ty'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
