@@ -137,7 +137,7 @@ def time_to_arrive(datetime, sec):
     return new_time
 
 def time_date(bus_route, source_stop, destination_stop, date, time, direction, stops, trip_id):
-    with open("C:\\home\\csstudent\\data_model\\trained_modelv10.pkl", "rb") as f:
+    with open("/home/csstudent/data_model/trained_modelv10.pkl", "rb") as f:
         rtr = joblib.load(f)
     holiday = holidays(date)
     p_holiday = holiday[0]
@@ -152,7 +152,13 @@ def time_date(bus_route, source_stop, destination_stop, date, time, direction, s
             status = 'dest'
         else:
             status = 'normal'
-        duration = model(bus_route, i[0], str(i[1]), weekday, p_holiday, s_holiday, rtr, trip_id)[0]
-        predicted_arrival_time = (time_to_arrive(parser.parse(date + ' ' + str(i[1])), duration))
+        if stops.index(i) == 0:
+            duration = model(bus_route, i[0], str(i[1]), weekday, p_holiday, s_holiday, rtr, trip_id)[0]
+            predicted_arrival_time = (time_to_arrive(parser.parse(date + ' ' + str(i[1])), duration))
+            print('First', i[0], duration, str(i[1]))
+        else:
+            duration = model(bus_route, i[0], dict[len(dict) - 1]['predicted_arrival_time'],weekday, p_holiday, s_holiday, rtr, trip_id)[0]
+            print('Others', i[0], duration, dict[len(dict) - 1]['predicted_arrival_time'])
+            predicted_arrival_time = (time_to_arrive(parser.parse(str(dict[len(dict) - 1]['predicted_arrival_time'])), duration))
         dict.append({'stopid':i[0], 'duration':duration, 'predicted_arrival_time':predicted_arrival_time, 'status':status})
     return dict

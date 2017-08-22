@@ -20,9 +20,12 @@ except:
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SERVER_TYPE = "DEV"
+SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_SSL_REDIRECT = False
+CSRF_COOKIE_SECURE = True # currently only in Dev branch of Django.
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -33,7 +36,7 @@ SECRET_KEY = '#*1zk%*2qy40&=12^jbzkamzgi7s8l8)h29h1(4vx^5sc4%&ty'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['137.43.49.41', '127.0.0.1']
+ALLOWED_HOSTS = ['csi6220-3-vm3.ucd.ie','137.43.49.41', '127.0.0.1']
 
 
 # Application definition
