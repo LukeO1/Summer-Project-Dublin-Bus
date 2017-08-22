@@ -2,7 +2,7 @@ import json
 import requests
 from django.http import HttpResponse
 from django.shortcuts import render
-from requests_oauthlib import OAuth1
+# from requests_oauthlib import OAuth1
 from .Algorithms import project_central, locate_bus
 import MySQLdb
 from .Algorithms import time_date
