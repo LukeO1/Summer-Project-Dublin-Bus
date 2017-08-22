@@ -165,7 +165,7 @@
                                 <div class="form-group">
                                     <input class="form-control" type="time" value="" id="example-time-input">
                                 </div>
-                                <div class="form-group"><button type="button" id="submit-route2" onclick="window.location='http://137.43.49.41:8000/dublinbuspredict/map';" class="form-control btn btn-primary" disabled>Find Journey</button></div>
+                                <div class="form-group"><button type="button" id="submit-route2" onclick="window.location='http://137.43.49.41:8001/dublinbuspredict/map';" class="form-control btn btn-primary" disabled>Find Journey</button></div>
 
                                 <div class="form-group"><button type="button" id="reset-2" onclick="loadRoutes2()" class="form-control btn btn-primary"><i class="fa fa-refresh" aria-hidden="true"></i></button>
                                 </div>
@@ -199,7 +199,7 @@
                                         document.getElementById("journeyPrice2").innerHTML = "";
                                         document.getElementById("distance2").innerHTML = "";
                                         document.getElementById("spinner-result-2").style.display = 'none';
-                                        $.getJSON("http://137.43.49.41:8000/dublinbuspredict/setInfoNextPage", {"route":route, "source":source, "destination":destination, "time":time, "date":date}, function() {
+                                        $.getJSON("http://137.43.49.41:8001/dublinbuspredict/setInfoNextPage", {"route":route, "source":source, "destination":destination, "time":time, "date":date}, function() {
                                             <!--initMap()-->
                                             loadRoutes()
                                         });
