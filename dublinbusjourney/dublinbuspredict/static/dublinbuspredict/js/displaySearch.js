@@ -120,38 +120,38 @@ function initMap() {
      	});
         
         infoWindow = new google.maps.InfoWindow;
-    	// Find geolocation of user. 
-        // Function adapted from: https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
-      
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-              pos = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
-              };
-              // create marker for new location
-              marker = new google.maps.Marker({
-              	position: pos,
-              	map: map,
-              	icon: myLocationIcon2
-          });  
-              
-          }, function() {
-              handleLocationError(true, infoWindow, map.getCenter());
-          });
-      } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-   		  infoWindow.close();
-          infoWindow.setPosition(pos);
-          infoWindow.setContent(browserHasGeolocation ?
-                                'Error: The Geolocation service failed.' :
-                                'Error: Your browser doesn\'t support geolocation.');
-          infoWindow.open(map);
-      }
+//    	// Find geolocation of user. 
+//        // Function adapted from: https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
+//      
+//      if (navigator.geolocation) {
+//          navigator.geolocation.getCurrentPosition(function(position) {
+//              pos = {
+//                  lat: position.coords.latitude,
+//                  lng: position.coords.longitude
+//              };
+//              // create marker for new location
+//              marker = new google.maps.Marker({
+//              	position: pos,
+//              	map: map,
+//              	icon: myLocationIcon2
+//          });  
+//              
+//          }, function() {
+//              handleLocationError(true, infoWindow, map.getCenter());
+//          });
+//      } else {
+//          // Browser doesn't support Geolocation
+//          handleLocationError(false, infoWindow, map.getCenter());
+//      }
+//
+//      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+//   		  infoWindow.close();
+//          infoWindow.setPosition(pos);
+//          infoWindow.setContent(browserHasGeolocation ?
+//                                'Error: The Geolocation service failed.' :
+//                                'Error: Your browser doesn\'t support geolocation.');
+//          infoWindow.open(map);
+//      }
 
       //Initialize the Path Array
       path = new google.maps.MVCArray();
@@ -659,15 +659,15 @@ function displayPredictionSchedule(bus, busNum, stops){
 }
 
 //function to center based on geolocation button. 
-function geoLocation(){
-	map.setZoom(12);
-	map.setCenter(pos);
-}
-// add click event to geolocation button
-$(document).ready(function (){
-  $("#buttonLocation2").on('click', function ()
-  {
-	  geoLocation();	  
-	});
-});
+//function geoLocation(){
+//	map.setZoom(12);
+//	map.setCenter(pos);
+//}
+//// add click event to geolocation button
+//$(document).ready(function (){
+//  $("#buttonLocation2").on('click', function ()
+//  {
+//	  geoLocation();	  
+//	});
+//});
 

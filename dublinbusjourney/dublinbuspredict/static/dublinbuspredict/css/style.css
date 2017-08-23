@@ -493,7 +493,7 @@ li.passed::after {
     width: 100%;
 }
 
-#floating-panel2 {
+/* #floating-panel2 {
   	right: 10px;
    	background: rgba(255, 255, 255, 0.9);
     height: 29px;
@@ -522,7 +522,7 @@ li.passed::after {
 #buttonLocation:hover {
   box-shadow: inset 0 0 0 60px rgba(0, 0, 0, 0.1);
 }
-
+*/
 
 .my-map-div{
     margin-top: 50px;
@@ -709,7 +709,7 @@ h5{
 }
 
 /* tourism.html: Geo-location button: Google Map*/
-#floating-panel {
+/* #floating-panel {
   	right: 429px;
    	background: rgba(255, 255, 255, 0.9);
     height: 29px;
@@ -738,7 +738,7 @@ h5{
 #buttonLocation:hover {
   box-shadow: inset 0 0 0 60px rgba(0, 0, 0, 0.1);
 }
-
+*/
 #toggleTourismTable{
 	display: block;
 	margin-left: 3px;

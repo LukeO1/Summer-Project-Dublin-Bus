@@ -85,38 +85,38 @@ function tourismMap(){
         }
         
         infoWindow = new google.maps.InfoWindow;
-    	// Find geolocation of user. 
-        // Function adapted from: https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
-      
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-              pos = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude
-              };
-              // create marker for new location
-              marker = new google.maps.Marker({
-              	position: pos,
-              	map: map,
-              	icon: myLocationIcon
-          });  
-              
-          }, function() {
-              handleLocationError(true, infoWindow, map.getCenter());
-          });
-      } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-   		  infoWindow.close();
-          infoWindow.setPosition(pos);
-          infoWindow.setContent(browserHasGeolocation ?
-                                'Error: The Geolocation service failed.' :
-                                'Error: Your browser doesn\'t support geolocation.');
-          infoWindow.open(map);
-      }
+//    	// Find geolocation of user. 
+//        // Function adapted from: https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
+//      
+//      if (navigator.geolocation) {
+//          navigator.geolocation.getCurrentPosition(function(position) {
+//              pos = {
+//                  lat: position.coords.latitude,
+//                  lng: position.coords.longitude
+//              };
+//              // create marker for new location
+//              marker = new google.maps.Marker({
+//              	position: pos,
+//              	map: map,
+//              	icon: myLocationIcon
+//          });  
+//              
+//          }, function() {
+//              handleLocationError(true, infoWindow, map.getCenter());
+//          });
+//      } else {
+//          // Browser doesn't support Geolocation
+//          handleLocationError(false, infoWindow, map.getCenter());
+//      }
+//
+//      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+//   		  infoWindow.close();
+//          infoWindow.setPosition(pos);
+//          infoWindow.setContent(browserHasGeolocation ?
+//                                'Error: The Geolocation service failed.' :
+//                                'Error: Your browser doesn\'t support geolocation.');
+//          infoWindow.open(map);
+//      }
     });
 }
 
@@ -380,19 +380,19 @@ $(document).ready(function (){
 	
 });
 
-// Toggle function for Tourist Table on tourism.html
-$(document).ready(function(){
-	$("#TourismButton").click(function(){
-		$("#toggleVenuesTable").hide();
-		$("#toggleTourismTable").show();
-	});
-});
-
-
-// Toggle function for Venues Table on tourism.html
-$(document).ready(function(){
-	$("#VenuesButton").click(function(){
-		$("#toggleTourismTable").hide();
-		$("#toggleVenuesTable").show();
-	});
-});
+//// Toggle function for Tourist Table on tourism.html
+//$(document).ready(function(){
+//	$("#TourismButton").click(function(){
+//		$("#toggleVenuesTable").hide();
+//		$("#toggleTourismTable").show();
+//	});
+//});
+//
+//
+//// Toggle function for Venues Table on tourism.html
+//$(document).ready(function(){
+//	$("#VenuesButton").click(function(){
+//		$("#toggleTourismTable").hide();
+//		$("#toggleVenuesTable").show();
+//	});
+//});
