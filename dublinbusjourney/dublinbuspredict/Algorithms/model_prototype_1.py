@@ -24,7 +24,6 @@ def model(bus_route, stopid, arrival_time, day, p_holiday, s_holiday, rtr, trip_
     direction = rows3[0][1]
 
     # 2 convert your arrival time to an integer. Arrival time needs to be replaced with your time variable.
-    print('Arrival time', arrival_time)
     arrival_time = parser.parse(arrival_time)
     new_arrival_time = (arrival_time.hour*3600) + (arrival_time.minute*60) + (arrival_time.second)
     new_arrival_time = new_arrival_time/86399
