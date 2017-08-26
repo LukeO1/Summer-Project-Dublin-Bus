@@ -51,7 +51,7 @@ def get_all_stops(time, bus_route, source_stop, destination_stop, date, directio
             direction = 1
         elif direction == 1:
             direction = 0
-
+    print('1', rows1)
     # Create query for the first prediction
     sql2 = """SELECT time_format(bus_timetable.arrival_time,'%T') , bus_timetable.stop_id, bus_timetable.stop_sequence, bus_stops.long_name, bus_timetable.accum_dist
             FROM bus_timetable, bus_stops WHERE trip_id = '{qtrip_id}'
@@ -61,30 +61,44 @@ def get_all_stops(time, bus_route, source_stop, destination_stop, date, directio
     cursor = db.cursor()
     cursor.execute(sql2.format(qtrip_id=str(rows1[0][0]),q2time=str(time)))
     rows2 = cursor.fetchall()
-    # create query for the second prediction
-    sql3 = """SELECT time_format(bus_timetable.arrival_time,'%T') , bus_timetable.stop_id, bus_timetable.stop_sequence, bus_stops.long_name, bus_timetable.accum_dist
-            FROM bus_timetable, bus_stops WHERE trip_id = '{qtrip_id}'
-            AND bus_timetable.arrival_time >= '{q2time}' AND bus_timetable.stop_id = bus_stops.stop_id
-            ORDER BY bus_timetable.stop_sequence"""
-
-    cursor = db.cursor()
-    cursor.execute(sql3.format(qtrip_id=str(rows1[1][0]),q2time=str(time)))
-    rows3 = cursor.fetchall()
-    # create query for the third prediction
-    sql4 = """SELECT time_format(bus_timetable.arrival_time,'%T') , bus_timetable.stop_id, bus_timetable.stop_sequence, bus_stops.long_name, bus_timetable.accum_dist
-            FROM bus_timetable, bus_stops WHERE trip_id = '{qtrip_id}'
-            AND bus_timetable.arrival_time >= '{q2time}' AND bus_timetable.stop_id = bus_stops.stop_id
-            ORDER BY bus_timetable.stop_sequence"""
-    cursor = db.cursor()
-    cursor.execute(sql4.format(qtrip_id=str(rows1[2][0]),q2time=str(time)))
-    rows4 = cursor.fetchall()
-    db.close()
-    
-    # get the three predictions for the data model.
+    print('2', rows2)
+    # get the first predictions for the data model.
     stops1 = src_dest_list(rows2, source_stop, destination_stop)
-    stops2 = src_dest_list(rows3, source_stop, destination_stop)
-    stops3 = src_dest_list(rows4, source_stop, destination_stop)
-    return [rows1, stops1, stops2, stops3]
+    # create query for the second prediction
+    true_second = False
+    true_third = False
+    if len(rows1) - 1 == 1 or len(rows1) == 3:
+        sql3 = """SELECT time_format(bus_timetable.arrival_time,'%T') , bus_timetable.stop_id, bus_timetable.stop_sequence, bus_stops.long_name, bus_timetable.accum_dist
+                FROM bus_timetable, bus_stops WHERE trip_id = '{qtrip_id}'
+                AND bus_timetable.arrival_time >= '{q2time}' AND bus_timetable.stop_id = bus_stops.stop_id
+                ORDER BY bus_timetable.stop_sequence"""
+        cursor = db.cursor()
+        cursor.execute(sql3.format(qtrip_id=str(rows1[1][0]),q2time=str(time)))
+        rows3 = cursor.fetchall()
+        print('3', rows3)
+        # get the second prediction for the data model.
+        stops2 = src_dest_list(rows3, source_stop, destination_stop)
+        true_second = True
+    # create query for the third prediction
+    if len(rows1) == 3:
+        sql4 = """SELECT time_format(bus_timetable.arrival_time,'%T') , bus_timetable.stop_id, bus_timetable.stop_sequence, bus_stops.long_name, bus_timetable.accum_dist
+                FROM bus_timetable, bus_stops WHERE trip_id = '{qtrip_id}'
+                AND bus_timetable.arrival_time >= '{q2time}' AND bus_timetable.stop_id = bus_stops.stop_id
+                ORDER BY bus_timetable.stop_sequence"""
+        cursor = db.cursor()
+        cursor.execute(sql4.format(qtrip_id=str(rows1[2][0]),q2time=str(time)))
+        rows4 = cursor.fetchall()
+        print('4', rows4)
+        # get the third prediction for the data model.
+        stops3 = src_dest_list(rows4, source_stop, destination_stop)
+        true_third = True
+    db.close()
+    if true_third:
+        return [rows1, stops1, stops2, stops3]
+    elif true_second:
+        return [rows1, stops1, stops2]
+    else:
+        return [rows1, stops1]
 
 
 def src_dest_list(rows, source, dest):
@@ -155,10 +169,8 @@ def time_date(bus_route, source_stop, destination_stop, date, time, direction, s
         if stops.index(i) == 0:
             duration = model(bus_route, i[0], str(i[1]), weekday, p_holiday, s_holiday, rtr, trip_id)[0]
             predicted_arrival_time = (time_to_arrive(parser.parse(date + ' ' + str(i[1])), duration))
-            print('First', i[0], duration, str(i[1]))
         else:
-            duration = model(bus_route, i[0], dict[len(dict) - 1]['predicted_arrival_time'],weekday, p_holiday, s_holiday, rtr, trip_id)[0]
-            print('Others', i[0], duration, dict[len(dict) - 1]['predicted_arrival_time'])
+            duration = model(bus_route, i[0], dict[len(dict) - 1]['predicted_arrival_time'], weekday, p_holiday, s_holiday, rtr, trip_id)[0]
             predicted_arrival_time = (time_to_arrive(parser.parse(str(dict[len(dict) - 1]['predicted_arrival_time'])), duration))
         dict.append({'stopid':i[0], 'duration':duration, 'predicted_arrival_time':predicted_arrival_time, 'status':status})
     return dict

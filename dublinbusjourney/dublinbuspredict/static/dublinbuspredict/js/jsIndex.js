@@ -19,6 +19,7 @@ function getStops(route) {
     document.getElementById('search-box-2').onkeyup = function(e){searchFunctionSRC()};
     document.getElementById('spinner2').style.display = 'block';
     $.getJSON("http://137.43.49.41:8001/dublinbuspredict/pilotRoutes", {"route":route}, function(d) {
+        console.log(d)
         document.getElementById("dropdown-list-2").innerHTML = "";
         document.getElementById("search-box-2").value = "";
         document.getElementById("search-box-3").value = "";

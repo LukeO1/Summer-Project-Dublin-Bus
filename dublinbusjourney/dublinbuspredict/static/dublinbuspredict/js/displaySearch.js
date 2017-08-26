@@ -120,9 +120,9 @@ function initMap() {
      	});
         
         infoWindow = new google.maps.InfoWindow;
-//    	// Find geolocation of user. 
-//        // Function adapted from: https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
-//      
+    	// Find geolocation of user. 
+        // Function adapted from: https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
+      
 //      if (navigator.geolocation) {
 //          navigator.geolocation.getCurrentPosition(function(position) {
 //              pos = {
@@ -319,7 +319,7 @@ function loadRoutes(){
         time = d['time']
         date = d['date']
         initMap()
-        $.getJSON("https://api.openweathermap.org/data/2.5/weather?q=Dublin,Ireland&units=metric&APPID=33e340fbba76a4645e26160abb37f014", null, function(dWeather) {
+        $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Dublin,Ireland&units=metric&APPID=33e340fbba76a4645e26160abb37f014", null, function(dWeather) {
             var weatherID = dWeather.weather[0].id;
             var weatherTemp = dWeather.main.temp;
             var weatherDesc = dWeather.weather[0].description;
@@ -456,7 +456,7 @@ function getStopsDestExtraRoute2(route){
     document.getElementById('spinner4').style.display = 'block';
     $.getJSON("http://137.43.49.41:8001/dublinbuspredict/getStopsDestExtraRoute", {"source":source, "dest":dest}, function(d) {
         $.each(d['routes'], function(i, p) {
-            $('#dropdown-list-4').append($('<li></li>').val(p).html('<a onclick=getExtraRoute2("' + p + '")>'+ p + '</a>'));
+            $('#dropdown-list-4').append($('<li></li>').val(p).html('<a onclick=getExtraRoute2("' + p[0] + '")>'+ p[0] + '&emsp;&emsp;' + p[1] + 'Km</a>'));
         });
         document.getElementById('spinner4').style.display = 'none';
     });
@@ -600,8 +600,10 @@ function getPredictionSchedule(route, source, destination, date, time){
                         document.getElementById('fail').style.display = 'block';
                     }
                     else{
-                        displayPredictionSchedule(d2.info_buses, busNum, d2.stops )
-                        busNum += 1;
+                        if (d2.stops [0] != null){
+                            displayPredictionSchedule(d2.info_buses, busNum, d2.stops )
+                            busNum += 1;
+                        }
                         document.getElementById('spinner-result-1').style.display = 'none';
                     }
                     $.getJSON("http://137.43.49.41:8001/dublinbuspredict/runPlanner", {"route":route, "source":source, "destination":destination, "date":date, "time":time, 'bus':bus3, 'stops': stops3}, function(d3) {
@@ -609,7 +611,10 @@ function getPredictionSchedule(route, source, destination, date, time){
                             document.getElementById('fail').style.display = 'block';
                         }
                         else{
-                            displayPredictionSchedule(d3.info_buses, busNum, d3.stops)
+                            if (d3.stops[0] != null){
+                            console.log('????', d3.stops)
+                                displayPredictionSchedule(d3.info_buses, busNum, d3.stops)
+                            }
                             document.getElementById('spinner-result-2').style.display = 'none';
                         }
                     });
@@ -658,7 +663,7 @@ function displayPredictionSchedule(bus, busNum, stops){
     busNum += 1;
 }
 
-//function to center based on geolocation button. 
+////function to center based on geolocation button. 
 //function geoLocation(){
 //	map.setZoom(12);
 //	map.setCenter(pos);

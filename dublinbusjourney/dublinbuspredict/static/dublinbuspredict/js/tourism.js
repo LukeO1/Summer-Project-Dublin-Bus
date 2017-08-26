@@ -85,9 +85,9 @@ function tourismMap(){
         }
         
         infoWindow = new google.maps.InfoWindow;
-//    	// Find geolocation of user. 
-//        // Function adapted from: https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
-//      
+    	// Find geolocation of user. 
+        // Function adapted from: https://developers.google.com/maps/documentation/javascript/examples/map-geolocation
+      
 //      if (navigator.geolocation) {
 //          navigator.geolocation.getCurrentPosition(function(position) {
 //              pos = {
@@ -380,19 +380,19 @@ $(document).ready(function (){
 	
 });
 
-//// Toggle function for Tourist Table on tourism.html
-//$(document).ready(function(){
-//	$("#TourismButton").click(function(){
-//		$("#toggleVenuesTable").hide();
-//		$("#toggleTourismTable").show();
-//	});
-//});
-//
-//
-//// Toggle function for Venues Table on tourism.html
-//$(document).ready(function(){
-//	$("#VenuesButton").click(function(){
-//		$("#toggleTourismTable").hide();
-//		$("#toggleVenuesTable").show();
-//	});
-//});
+// Toggle function for Tourist Table on tourism.html
+$(document).ready(function(){
+	$("#TourismButton").click(function(){
+		$("#toggleVenuesTable").hide();
+		$("#toggleTourismTable").show();
+	});
+});
+
+
+// Toggle function for Venues Table on tourism.html
+$(document).ready(function(){
+	$("#VenuesButton").click(function(){
+		$("#toggleTourismTable").hide();
+		$("#toggleVenuesTable").show();
+	});
+});

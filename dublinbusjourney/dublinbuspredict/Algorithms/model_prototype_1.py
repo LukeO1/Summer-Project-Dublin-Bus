@@ -57,6 +57,8 @@ def model(bus_route, stopid, arrival_time, day, p_holiday, s_holiday, rtr, trip_
     cols.insert(0, cols.pop(cols.index('lat')))
     input_data = input_data.loc[:, cols]
     
-    # 4 predict the delay based on the input.
+    # 4 load in the model.
+
+    # 5 predict the delay based on the input.
     predict_duration = rtr.predict(input_data)
     return predict_duration

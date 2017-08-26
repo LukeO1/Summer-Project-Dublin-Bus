@@ -17,10 +17,10 @@
         <!-- Link to jQuery libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <!-- Needed for Glyphicons: Font Awesome CDN Source: https://fontawesome.io/ -->
+        <!-- Needed for Glyphicons: Font Awesome CDN Source: http://fontawesome.io/ -->
         <script src="https://use.fontawesome.com/e8a4c811a1.js"></script>
 
-        <!-- Font Awesome CDN Source: https://fontawesome.io/ -->
+        <!-- Font Awesome CDN Source: http://fontawesome.io/ -->
         <script src="https://use.fontawesome.com/e8a4c811a1.js"></script>
 
         <!-- CSS: Link to weather icons-->
@@ -96,10 +96,9 @@
             <div class="row"></div>
             	<div id="wrapper">
                 	<div id="map"></div>
-                	<!--  Geolocation button below disabled. 
-                	<div id="floating-panel2" class="hidden-xs">
+                	<!--   <div id="floating-panel2" class="hidden-xs">
                 		<button id="buttonLocation2" class="button"><i class="fa fa-crosshairs" aria-hidden="true"></i></button>
-            		</div>-->
+            		</div> -->
                 	<div id="displayWeather">
                     	<br>
                     	<p id="wTemp1"></p>
@@ -166,11 +165,27 @@
                                 <div class="form-group">
                                     <input class="form-control" type="time" value="" id="example-time-input">
                                 </div>
-                                <div class="form-group"><button type="button" id="submit-route2" onclick="window.location='http://137.43.49.41:8001/dublinbuspredict/map';" class="form-control btn btn-primary" disabled>Find Journey</button></div>
+                                <div class="form-group"><button type="button" id="submit-route2" onclick="window.location='http://137.43.49.41:8001/dublinbuspredict/map';" class="form-control btn btn-primary">Find Journey</button></div>
 
                                 <div class="form-group"><button type="button" id="reset-2" onclick="loadRoutes2()" class="form-control btn btn-primary"><i class="fa fa-refresh" aria-hidden="true"></i></button>
                                 </div>
                                 <script>
+                                    <!--function setDefault(){-->
+                                        <!--var b = $.getJSON("http://137.43.49.41:8001/dublinbuspredict/getInfoNextPage", null,-->
+                                                          <!--function(d) {-->
+                                            <!--route = d['route'];-->
+                                            <!--source = d['source'];-->
+                                            <!--destination = d['destination'];-->
+                                            <!--var RouteID = document.querySelector("#search-box-4");-->
+                                            <!--RouteID.value = route;-->
+                                            <!--var SourceID =document.querySelector("#search-box-5");-->
+                                            <!--SourceID.value = source;-->
+                                            <!--var DestinationID =document.querySelector("#search-box-6");-->
+                                            <!--DestinationID.value = destination;-->
+                                        <!--})-->
+                                        <!--}-->
+                                    <!--setDefault();-->
+
                                     document.getElementById("submit-route2").addEventListener("click", function(){
                                         route = document.getElementById("search-box-4").value;
                                         source = document.getElementById("search-box-5").value;
@@ -324,8 +339,8 @@
                         </div>
                         <div class="col-sm-3 text-center"><h4>Transportation Links</h4>
                             <li><a target="_blank" href="https://www.luas.ie/">Luas</a></li>
-                            <li><a target="_blank" href="https://www.buseireann.ie/">Bus Eireann</a></li>
-                            <li><a target="_blank" href="https://www.irishrail.ie/">Irish Rail</a></li>
+                            <li><a target="_blank" href="http://www.buseireann.ie/">Bus Eireann</a></li>
+                            <li><a target="_blank" href="http://www.irishrail.ie/">Irish Rail</a></li>
                         </div>
                         <div class="col-sm-3 text-center hidden-xs"><img id="bly_img" src="{% static 'dublinbuspredict/css/images/logonobg.png' %}">
                         </div>
